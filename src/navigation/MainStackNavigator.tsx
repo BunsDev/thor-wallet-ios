@@ -18,7 +18,7 @@ export const MainStackNavigator = () => {
       />
     </Stack.Navigator>
   ) : (
-    <Stack.Navigator>
+    <Stack.Navigator headerMode="none">
       <Stack.Screen
         name={__NAVIGATORS.ONBOARDING}
         component={OnboardingNavigator}
