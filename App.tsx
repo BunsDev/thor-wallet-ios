@@ -1,16 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {IntroSlider} from './src/components/screens/IntroSlider';
-
-const Stack = createStackNavigator();
+import {DrawerNavigator} from './src/navigation/DrawerNavigator';
 
 export const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={IntroSlider} />
-      </Stack.Navigator>
+      <DrawerNavigator />
     </NavigationContainer>
   );
 };
