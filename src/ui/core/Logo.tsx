@@ -33,7 +33,6 @@ export const Logo = ({sizeMultiplier = 1, color}: Props) => {
       </Defs>
       <G stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <G
-          id="Artboard"
           transform="translate(-170.000000, -72.000000)"
           fill="url(#linearGradient-1)"
           fillRule="nonzero"
