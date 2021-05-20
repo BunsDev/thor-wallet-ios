@@ -1,7 +1,7 @@
 import {Dimensions, Platform} from 'react-native';
 import {css} from 'styled-components';
-import {alpha} from './Alpha';
-import {__COLORS} from './Colors';
+import {alpha} from './alpha';
+import {__COLORS} from './colors';
 
 /**
  * Variable shared among the whole project for having consistent spacing between elements
@@ -28,6 +28,10 @@ const iOSShadow = css`
 
 const AndroidShadow = css`
   elevation: 4;
+`;
+
+export const HORIZONTAL_PADDING = css`
+  padding: 0 ${SPACING * 2}px;
 `;
 
 export const DEFAULT_SHADOW = css`
