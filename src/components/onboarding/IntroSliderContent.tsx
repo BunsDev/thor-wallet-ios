@@ -3,6 +3,7 @@ import {Flex} from '../../ui/core/Flex';
 import {MakeSpacing} from '../../ui/core/Spacer';
 import {Bold, Regular} from '../../ui/core/Typography';
 import {horizontalPadding} from '../../ui/theme/layout';
+import LottieView from 'lottie-react-native';
 
 export const IntroSliderContent = () => {
   return (
@@ -13,6 +14,7 @@ export const IntroSliderContent = () => {
       align="center"
       {...horizontalPadding}
     >
+      <LottieView source={require('../../assets/animations/decentralized.json')} autoPlay loop />
       <Bold size="l">Decentralized.</Bold>
       <MakeSpacing yMultiply={1} />
       <Regular center>
