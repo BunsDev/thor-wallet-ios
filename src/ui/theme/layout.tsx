@@ -21,22 +21,25 @@ export const __SCREEN_HEIGHT = Dimensions.get('screen').height;
  */
 const iOSShadow = css`
   shadow-opacity: 0.7;
-  shadow-radius: 9px;
-  shadow-color: ${alpha(0.41, __COLORS.PRIMARY)};
-  shadow-offset: 11px 7px;
+  shadow-radius: 12px;
+  shadow-color: ${alpha(0.66, __COLORS.PRIMARY)};
+  shadow-offset: 6px 7px;
 `;
 
 const AndroidShadow = css`
   elevation: 4;
 `;
 
+const PADDING = SPACING * 2;
 export const HORIZONTAL_PADDING = css`
-  padding: 0 ${SPACING * 2}px;
+  padding: 0 ${PADDING}px;
 `;
 
 export const Padding = styled(View)`
   ${HORIZONTAL_PADDING};
 `;
+
+export const horizontalPadding = {paddingHorizontal: PADDING};
 
 export const DEFAULT_SHADOW = css`
   ${Platform.OS === 'android' && AndroidShadow};
