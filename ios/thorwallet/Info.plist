@@ -51,5 +51,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SofiaProBlack.ttf</string>
+		<string>SofiaProBold.ttf</string>
+		<string>SofiaProLight.ttf</string>
+		<string>SofiaProRegular.ttf</string>
+		<string>SofiaProSemiBold.ttf</string>
+		<string>SofiaProUltraLight.ttf</string>
+	</array>
 </dict>
 </plist>

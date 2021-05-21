@@ -47,6 +47,19 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  
+  // check the exact name of installed fonts
+  for (NSString* family in [UIFont familyNames])
+  {
+    NSLog(@"Font installed %@", family);
+    for (NSString* name in [UIFont fontNamesForFamilyName: family])
+    {
+      NSLog(@" %@", name);
+    }
+  }
+  
+  
   return YES;
 }
 
