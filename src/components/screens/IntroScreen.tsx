@@ -11,8 +11,7 @@ import {Background} from '../../ui/theme/Background';
 import {Padding, __WINDOW_WIDTH} from '../../ui/theme/layout';
 import {BottomPadder} from '../BottomPadder';
 import {LogoWithText} from '../LogoWithText';
-import { IntroSliderContent } from "../onboarding/IntroSliderContent";
-import {IntroSlider2} from '../onboarding/IntroSlider2';
+import {IntroSliderContent} from '../onboarding/IntroSliderContent';
 import {TopPadder} from '../TopPadder';
 
 const ELEMENT_WIDTH = __WINDOW_WIDTH;
@@ -23,7 +22,7 @@ const Element = styled(View)`
 
 export const IntroScreen = () => {
   const currentIndex = useMemoizedSharedValue(0);
-  const NR_ELEMENTS = 2;
+  const NR_ELEMENTS = 3;
 
   const scrollHandler = useAnimatedScrollHandler({
     onMomentumEnd: (event) => {
@@ -51,15 +50,35 @@ export const IntroScreen = () => {
           scrollEventThrottle={16}
         >
           <Element>
-            <IntroSliderContent />
+            <IntroSliderContent
+              title="Decentralized."
+              description="The THORWallet will allow you to store your coins savely and allow you
+        to swap any tokens without KYC in a fully decentralized manner. You are
+        fully in control of your finances without middleman."
+              animation={require('../../assets/animations/decentralized.json')}
+            />
           </Element>
           <Element>
-            <IntroSlider2 />
+            <IntroSliderContent
+              title="Yearly Return."
+              description="There are two distinct ways to earn a yearly return. You can either provide liquidity to the trading pool where a part of the trading fees will be shared with you or you can lend your tokens and someone else will borrow them and pay you an interest rate for that."
+              animation={require('../../assets/animations/graph.json')}
+            />
+          </Element>
+
+          <Element>
+            <IntroSliderContent
+              title="Native Chains."
+              description={
+                'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, cumque cupiditate, deserunt dolore hic illum molestiae nemo, odio optio ratione rem tempore? Accusantium consequatur consequuntur est inventore itaque, quam ullam'
+              }
+              animation={require('../../assets/animations/native.json')}
+            />
           </Element>
         </Animated.ScrollView>
       </Flex>
       <Padding>
-        <Button onPress={() => undefined} label="Get Started"  />
+        <Button onPress={() => undefined} label="Get Started" />
         <MakeSpacing yMultiply={1} />
         <Button
           onPress={() => undefined}
