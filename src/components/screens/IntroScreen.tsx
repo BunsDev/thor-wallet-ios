@@ -1,16 +1,20 @@
 import React from 'react';
-import {Logo} from '../../ui/core/Logo';
-import { Black, Regular, SemiBold } from "../../ui/core/Typography";
+import {Flex} from '../../ui/core/Flex';
+import {ObliqueLines} from '../../ui/core/ObliqueLines';
+import {MakeSpacing} from '../../ui/core/Spacer';
 import {Background} from '../../ui/theme/Background';
+import {LogoWithText} from '../LogoWithText';
 import {TopPadder} from '../TopPadder';
 
 export const IntroScreen = () => {
   return (
     <Background column flex={1}>
       <TopPadder />
-      <Regular>Regular muidd</Regular>
-      <Black>Black mudddddd</Black>
-      <Logo />
+      <MakeSpacing yMultiply={3} />
+      <ObliqueLines topOffset={80} />
+      <Flex row justify="center">
+        <LogoWithText />
+      </Flex>
     </Background>
   );
 };

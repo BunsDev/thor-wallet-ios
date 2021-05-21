@@ -1,6 +1,6 @@
 import {View} from 'react-native';
 import styled from 'styled-components';
-import { SPACING } from "../theme/Layout";
+import {SPACING} from '../theme/layout';
 
 export const MakeSpacing = styled(View)<{
   xMultiply?: number;
