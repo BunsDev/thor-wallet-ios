@@ -1,5 +1,5 @@
-import {Dimensions, Platform} from 'react-native';
-import {css} from 'styled-components';
+import {Dimensions, Platform, View} from 'react-native';
+import styled, {css} from 'styled-components';
 import {alpha} from './alpha';
 import {__COLORS} from './colors';
 
@@ -20,10 +20,10 @@ export const __SCREEN_HEIGHT = Dimensions.get('screen').height;
  * css elements to be used for styled components
  */
 const iOSShadow = css`
-  shadow-opacity: 0.7;
+  shadow-opacity: 0.5;
   shadow-radius: 10px;
-  shadow-color: ${alpha(0.25, __COLORS.WHITE)};
-  shadow-offset: 0px 0px;
+  shadow-color: ${alpha(0.35, __COLORS.SECONDARY)};
+  shadow-offset: 10px 10px;
 `;
 
 const AndroidShadow = css`
@@ -32,6 +32,10 @@ const AndroidShadow = css`
 
 export const HORIZONTAL_PADDING = css`
   padding: 0 ${SPACING * 2}px;
+`;
+
+export const Padding = styled(View)`
+  ${HORIZONTAL_PADDING};
 `;
 
 export const DEFAULT_SHADOW = css`

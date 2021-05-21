@@ -51,7 +51,6 @@ type TextProps = {
   color?: string;
 };
 
-
 export const Light = styled(Text)<TextProps>`
   ${({size}) => getSize(size)};
   ${({color, center}) => shared(color, center)};
@@ -74,6 +73,12 @@ export const Bold = styled(Text)<TextProps>`
   ${({size}) => getSize(size)};
   ${({color, center}) => shared(color, center)};
   font-family: ${__FONT_FAMILIES.BOLD};
+`;
+
+export const ExtraBold = styled(Text)<TextProps>`
+  ${({size}) => getSize(size)};
+  ${({color, center}) => shared(color, center)};
+  font-family: ${__FONT_FAMILIES.EXTRA_BOLD};
 `;
 
 export const Black = styled(Text)<TextProps>`

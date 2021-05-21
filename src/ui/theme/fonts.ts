@@ -1,7 +1,8 @@
 export enum __FONT_FAMILIES {
-  LIGHT = 'SofiaPro-Light',
-  REGULAR = 'SofiaPro-Regular',
-  SEMI_BOLD = 'SofiaPro-SemiBold',
-  BOLD = 'SofiaPro-Bold',
-  BLACK = 'SofiaPro-Black',
+  LIGHT = 'Montserrat-Light',
+  REGULAR = 'Montserrat-Regular',
+  SEMI_BOLD = 'Montserrat-SemiBold',
+  BOLD = 'Montserrat-Bold',
+  EXTRA_BOLD = 'Montserrat-ExtraBold',
+  BLACK = 'Montserrat-Black',
 }
