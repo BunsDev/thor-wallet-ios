@@ -20,10 +20,10 @@ export const __SCREEN_HEIGHT = Dimensions.get('screen').height;
  * css elements to be used for styled components
  */
 const iOSShadow = css`
-  shadow-opacity: 0.5;
-  shadow-radius: 10px;
-  shadow-color: ${alpha(0.35, __COLORS.SECONDARY)};
-  shadow-offset: 10px 10px;
+  shadow-opacity: 0.7;
+  shadow-radius: 9px;
+  shadow-color: ${alpha(0.41, __COLORS.PRIMARY)};
+  shadow-offset: 11px 7px;
 `;
 
 const AndroidShadow = css`
