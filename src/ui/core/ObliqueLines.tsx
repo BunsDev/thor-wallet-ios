@@ -1,6 +1,7 @@
 import React from 'react';
 import Svg, {Line} from 'react-native-svg';
 import styled from 'styled-components';
+import {alpha} from '../theme/alpha';
 import {__COLORS} from '../theme/colors';
 import {__WINDOW_WIDTH} from '../theme/layout';
 
@@ -8,26 +9,27 @@ const SvgAbsolute = styled(Svg)<{topOffset?: number; height: number}>`
   position: absolute;
   z-index: -1;
   width: ${__WINDOW_WIDTH + 120}px;
-
-  height: ${(props) => props.height * 3}px;
-  background-color: red;
   top: ${(props) => props.topOffset ?? 0}px;
 `;
 
+const ROUNDING_PIXEL = 4;
 const HORIZONTAL_PUFFER = 10;
 const SPACE_BETWEEN_LINES = 20;
-const LINE_HEIGHT = 3;
+const LINE_HEIGHT = 4;
 const NUMBER_OF_LINES = 3;
-const SLOPE = 100;
+const SLOPE = 142;
 type Props = {
   topOffset?: number;
 };
 export const ObliqueLines = ({topOffset}: Props) => {
   // highest y2 is taken when i = 0 (loop below)
-  const HIGHEST_Y2 = LINE_HEIGHT - SLOPE;
+  const HIGHEST_Y2 = LINE_HEIGHT - SLOPE + -ROUNDING_PIXEL;
   // the lowest y1 is taken as high since the lines are already translated below substracting the highesty2
   const LOWEST_Y1 =
-    LINE_HEIGHT + SPACE_BETWEEN_LINES * (NUMBER_OF_LINES - 1) - HIGHEST_Y2;
+    LINE_HEIGHT +
+    SPACE_BETWEEN_LINES * (NUMBER_OF_LINES - 1) -
+    HIGHEST_Y2 +
+    ROUNDING_PIXEL;
 
   return (
     <SvgAbsolute
@@ -46,7 +48,7 @@ export const ObliqueLines = ({topOffset}: Props) => {
             x2={__WINDOW_WIDTH + HORIZONTAL_PUFFER}
             y1={y1}
             y2={y2}
-            stroke={__COLORS.WHITE}
+            stroke={alpha(0.8 - i * 0.3, __COLORS.LEFT_GRADIENT)}
           />
         );
       })}

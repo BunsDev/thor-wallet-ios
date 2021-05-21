@@ -11,7 +11,7 @@ export const IntroScreen = () => {
     <Background column flex={1}>
       <TopPadder />
       <MakeSpacing yMultiply={3} />
-      <ObliqueLines topOffset={80} />
+      <ObliqueLines topOffset={21} />
       <Flex row justify="center">
         <LogoWithText />
       </Flex>
