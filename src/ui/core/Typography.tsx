@@ -4,11 +4,11 @@ import {__COLORS} from '../theme/colors';
 import {__FONT_FAMILIES} from '../theme/fonts';
 
 const XXS_FONT_SIZE = 8;
-export const XS_FONT_SIZE = 11;
+export const XS_FONT_SIZE = 12;
 export const S_FONT_SIZE = 14;
 export const M_FONT_SIZE = 16; // default font size for text
 const L_FONT_SIZE = 18;
-export const XL_FONT_SIZE = 24;
+export const XL_FONT_SIZE = 20;
 const XXL_FONT_SIZE = 30;
 
 const DEFAULT_FONT_COLOR = __COLORS.WHITE;
