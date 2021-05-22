@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
-import Animated, {useAnimatedScrollHandler} from 'react-native-reanimated';
+import Animated, {
+  runOnJS,
+  useAnimatedScrollHandler,
+} from 'react-native-reanimated';
 import styled from 'styled-components';
 import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
 import {Button} from '../../ui/core/Button';
@@ -22,12 +25,14 @@ const Element = styled(View)`
 `;
 
 export const IntroScreen = () => {
+  const [, setIndex] = useState(0);
   const currentIndex = useMemoizedSharedValue(0);
   const NR_ELEMENTS = 3;
 
   const scrollHandler = useAnimatedScrollHandler({
     onMomentumEnd: (event) => {
       currentIndex.value = Math.round(event.contentOffset.x / ELEMENT_WIDTH);
+      runOnJS(setIndex)(currentIndex.value);
     },
   });
 
