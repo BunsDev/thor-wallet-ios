@@ -2,6 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {View} from 'react-native';
+import {drawerNavigator} from '../../navigation/DrawerActions';
 import {__SCREENS} from '../../types/navigation/navigation-types';
 import {OnboardingDrawerScreens} from '../../types/navigation/screen-types';
 
@@ -13,7 +14,7 @@ const Demo = () => {
 
 export const OnboardingDrawerNavigator = () => {
   return (
-    <NavigationContainer independent>
+    <NavigationContainer ref={drawerNavigator} independent>
       <Stack.Navigator>
         <Stack.Screen
           name={__SCREENS.DRAWER_ONBOARDING_SCREEN}
