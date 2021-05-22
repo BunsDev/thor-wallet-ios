@@ -40,7 +40,6 @@ export const ObliqueLines = ({topOffset}: Props) => {
       {new Array(NUMBER_OF_LINES).fill(0).map((_, i) => {
         const y1 = LINE_HEIGHT + SPACE_BETWEEN_LINES * i - HIGHEST_Y2;
         const y2 = LINE_HEIGHT + SPACE_BETWEEN_LINES * i - SLOPE - HIGHEST_Y2;
-        console.log(`(${y1}, ${y2})`);
         return (
           <Line
             key={String(`line-${i}`)}

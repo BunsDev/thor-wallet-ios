@@ -11,6 +11,7 @@ import {Background} from '../../ui/theme/Background';
 import {Padding, __WINDOW_WIDTH} from '../../ui/theme/layout';
 import {BottomPadder} from '../BottomPadder';
 import {LogoWithText} from '../LogoWithText';
+import {CarouselDots} from '../onboarding/CarouselDots';
 import {IntroSliderContent} from '../onboarding/IntroSliderContent';
 import {TopPadder} from '../TopPadder';
 
@@ -26,9 +27,10 @@ export const IntroScreen = () => {
 
   const scrollHandler = useAnimatedScrollHandler({
     onMomentumEnd: (event) => {
-      currentIndex.value = event.contentOffset.x / ELEMENT_WIDTH;
+      currentIndex.value = Math.round(event.contentOffset.x / ELEMENT_WIDTH);
     },
   });
+
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -37,7 +39,7 @@ export const IntroScreen = () => {
       <Flex row justify="center">
         <LogoWithText />
       </Flex>
-      <Flex column flex={1}>
+      <Flex column>
         <Animated.ScrollView
           onScroll={scrollHandler}
           horizontal
@@ -65,7 +67,6 @@ export const IntroScreen = () => {
               animation={require('../../assets/animations/graph.json')}
             />
           </Element>
-
           <Element>
             <IntroSliderContent
               title="Native Chains."
@@ -76,7 +77,10 @@ export const IntroScreen = () => {
             />
           </Element>
         </Animated.ScrollView>
+        <MakeSpacing yMultiply={3} />
+        <CarouselDots nrDots={NR_ELEMENTS} activeIndex={currentIndex} />
       </Flex>
+      <Flex flex={1} />
       <Padding>
         <Button onPress={() => undefined} label="Get Started" />
         <MakeSpacing yMultiply={1} />

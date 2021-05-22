@@ -12,23 +12,13 @@ type Props = {
 };
 export const IntroSliderContent = ({title, animation, description}: Props) => {
   return (
-    <Flex column flex={1} align="center" {...horizontalPadding}>
+    <Flex column align="center" {...horizontalPadding}>
       <MakeSpacing yMultiply={4} />
       <LottieView
         source={animation}
         autoPlay
         loop
         resizeMode="contain"
-        colorFilters={[
-          {
-            keypath: 'Shape 1',
-            color: '#F00000',
-          },
-          {
-            keypath: 'Sending Loader',
-            color: '#F00000',
-          },
-        ]}
         style={{
           height: 200,
           width: 200,
