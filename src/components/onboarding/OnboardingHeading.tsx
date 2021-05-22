@@ -11,7 +11,7 @@ export const OnboardingHeading = ({title, subtitle}: Props) => {
   return (
     <Flex column {...horizontalPadding}>
       <Black size="xl">{title.toUpperCase()}</Black>
-      <Regular size="l">{subtitle}</Regular>
+      <Regular size="xl">{subtitle}</Regular>
     </Flex>
   );
 };
