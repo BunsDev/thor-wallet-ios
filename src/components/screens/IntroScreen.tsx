@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View} from 'react-native';
 import Animated, {
   runOnJS,
@@ -6,6 +6,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import styled from 'styled-components';
 import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
+import {useOnboardingNavigation} from '../../navigation/use-navigation';
+import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
 import {Flex} from '../../ui/core/Flex';
 import {ObliqueLines} from '../../ui/core/ObliqueLines';
@@ -25,6 +27,7 @@ const Element = styled(View)`
 `;
 
 export const IntroScreen = () => {
+  const navigation = useOnboardingNavigation<__SCREENS.WELCOME_SCREEN>();
   const [, setIndex] = useState(0);
   const currentIndex = useMemoizedSharedValue(0);
   const NR_ELEMENTS = 3;
@@ -35,6 +38,10 @@ export const IntroScreen = () => {
       runOnJS(setIndex)(currentIndex.value);
     },
   });
+
+  const navigateTo = useCallback(() => {
+    navigation.navigate(__SCREENS.USERNAME);
+  }, [navigation]);
 
   return (
     <Background column flex={1}>
@@ -87,7 +94,7 @@ export const IntroScreen = () => {
       </Flex>
       <Flex flex={1} />
       <Padding>
-        <Button onPress={() => undefined} label="Get Started" />
+        <Button onPress={navigateTo} label="Get Started" />
         <MakeSpacing yMultiply={1} />
         <Button
           onPress={() => undefined}

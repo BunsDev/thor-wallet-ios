@@ -6,6 +6,7 @@ export type DrawerNavigationScreens = {
 
 export type OnboardingNavigatorScreens = {
   [__SCREENS.WELCOME_SCREEN]: undefined;
+  [__SCREENS.USERNAME]: undefined;
 };
 
 export type OnboardedNavigatorScreen = {
