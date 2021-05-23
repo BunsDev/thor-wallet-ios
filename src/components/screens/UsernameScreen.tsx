@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from '../../ui/core/Button';
 import {Flex} from '../../ui/core/Flex';
 import {Input} from '../../ui/core/Input';
@@ -10,6 +10,7 @@ import {OnboardingHeading} from '../onboarding/OnboardingHeading';
 import {TopPadder} from '../TopPadder';
 
 export const UsernameScreen = () => {
+  const [username, setUsername] = useState('');
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -20,7 +21,12 @@ export const UsernameScreen = () => {
       />
       <MakeSpacing yMultiply={8} />
       <Flex flex={1} {...horizontalPadding}>
-        <Input label={'username'} />
+        <Input
+          label={'username'}
+          value={username}
+          onChangeText={setUsername}
+          status={username.length > 3 ? 'valid' : undefined}
+        />
       </Flex>
       <Padding>
         <Button label={'Continue'} />

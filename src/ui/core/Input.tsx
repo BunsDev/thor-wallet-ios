@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {TextInput, TextInputProps} from 'react-native';
+import {TextInput, TextInputProps, View} from 'react-native';
 import Animated, {
   Easing,
   useAnimatedReaction,
@@ -8,9 +8,12 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import styled from 'styled-components';
+import {AnimatedCheck} from '../../components/AnimatedCheck';
 import {DefaultGradient} from '../../components/DefaultGradient';
 import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
+import {alpha} from '../theme/alpha';
 import {__COLORS} from '../theme/colors';
+import {__FONT_FAMILIES} from '../theme/fonts';
 import {DEFAULT_BORDER_RADIUS, SPACING} from '../theme/layout';
 import {Flex} from './Flex';
 import {AnimatedRegular} from './Typography';
@@ -28,7 +31,8 @@ const Wrapper = styled(Flex)`
 const StyledInput = styled(TextInput)`
   flex: 1;
   color: ${__COLORS.WHITE};
-  padding: ${SPACING * 2}px;
+  padding: ${SPACING * 2}px 0;
+  font-family: ${__FONT_FAMILIES.REGULAR};
   z-index: 1;
 `;
 
@@ -36,6 +40,7 @@ const GradientLine = styled(DefaultGradient)`
   height: 3px;
   width: 100%;
   position: absolute;
+  opacity: 1;
   left: 0;
   bottom: 0;
   ${DEFAULT_BORDER_RADIUS};
@@ -44,13 +49,19 @@ const GradientLine = styled(DefaultGradient)`
 const BigLabel = styled(AnimatedRegular)`
   position: absolute;
   top: 13px;
-  padding-left: ${SPACING * 2}px;
+  color: ${alpha(0.75, __COLORS.WHITE)};
 `;
 
 const SmallLabel = styled(AnimatedRegular)`
   position: absolute;
   top: -2px;
-  padding-left: ${SPACING * 2}px;
+  color: ${alpha(0.6, __COLORS.WHITE)};
+`;
+
+const AnimatedCheckWrapper = styled(View)`
+  position: absolute;
+  right: 0;
+  bottom: ${SPACING * 2}px;
 `;
 
 const animationConfig: Animated.WithTimingConfig = {
@@ -63,7 +74,6 @@ export const Input = ({
   status,
   label,
   value,
-  onFocus,
   onChangeText,
 }: Props) => {
   const focus = useMemoizedSharedValue(false);
@@ -90,8 +100,6 @@ export const Input = ({
     };
   });
 
-  console.log('animated', active.value);
-
   const onfocus = useCallback(() => {
     focus.value = true;
   }, [focus]);
@@ -107,6 +115,11 @@ export const Input = ({
         onBlur={onblur}
         onFocus={onfocus}
       />
+      {status === 'valid' && (
+        <AnimatedCheckWrapper>
+          <AnimatedCheck />
+        </AnimatedCheckWrapper>
+      )}
       <BigLabel size="m" style={animatedStyle2}>
         {label}
       </BigLabel>
