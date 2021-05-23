@@ -1,9 +1,10 @@
 import React from 'react';
 import {Button} from '../../ui/core/Button';
 import {Flex} from '../../ui/core/Flex';
+import {Input} from '../../ui/core/Input';
 import {MakeSpacing} from '../../ui/core/Spacer';
 import {Background} from '../../ui/theme/Background';
-import {Padding} from '../../ui/theme/layout';
+import {horizontalPadding, Padding} from '../../ui/theme/layout';
 import {BottomPadder} from '../BottomPadder';
 import {OnboardingHeading} from '../onboarding/OnboardingHeading';
 import {TopPadder} from '../TopPadder';
@@ -17,7 +18,10 @@ export const UsernameScreen = () => {
         title={'Get Started'}
         subtitle={'Create your username'}
       />
-      <Flex flex={1} />
+      <MakeSpacing yMultiply={8} />
+      <Flex flex={1} {...horizontalPadding}>
+        <Input label={'username'} />
+      </Flex>
       <Padding>
         <Button label={'Continue'} />
         <Button label={'Skip'} secondary />

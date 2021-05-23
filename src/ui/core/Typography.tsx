@@ -1,4 +1,5 @@
 import {Text} from 'react-native-normalized';
+import Animated from 'react-native-reanimated';
 import styled, {css} from 'styled-components';
 import {__COLORS} from '../theme/colors';
 import {__FONT_FAMILIES} from '../theme/fonts';
@@ -85,4 +86,10 @@ export const Black = styled(Text)<TextProps>`
   ${({size}) => getSize(size)};
   ${({color, center}) => shared(color, center)};
   font-family: ${__FONT_FAMILIES.BLACK};
+`;
+
+export const AnimatedRegular = styled(Animated.Text)<TextProps>`
+  ${({size}) => getSize(size)};
+  ${({color, center}) => shared(color, center)};
+  font-family: ${__FONT_FAMILIES.REGULAR};
 `;
