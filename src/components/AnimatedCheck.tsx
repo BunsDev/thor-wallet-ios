@@ -10,7 +10,7 @@ import {__COLORS} from '../ui/theme/colors';
 
 const CHECK_SIZE = 20;
 const DASHOFFSET = 22.892;
-const AnimatedPolyLine = Animated.createAnimatedComponent(Path);
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export const AnimatedCheck = () => {
@@ -48,7 +48,7 @@ export const AnimatedCheck = () => {
         strokeDasharray={circumference}
         animatedProps={animatedProps2}
       />
-      <AnimatedPolyLine
+      <AnimatedPath
         stroke={__COLORS.RIGHT_GRADIENT}
         strokeWidth={3}
         strokeLinecap="round"

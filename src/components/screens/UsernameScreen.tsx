@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button} from '../../ui/core/Button';
+import {Checkbox} from '../../ui/core/Checkbox';
 import {Flex} from '../../ui/core/Flex';
 import {Input} from '../../ui/core/Input';
 import {MakeSpacing} from '../../ui/core/Spacer';
@@ -11,6 +12,7 @@ import {TopPadder} from '../TopPadder';
 
 export const UsernameScreen = () => {
   const [username, setUsername] = useState('');
+  const [active, setActive] = useState(false);
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -28,6 +30,12 @@ export const UsernameScreen = () => {
           status={username.length > 3 ? 'valid' : undefined}
         />
       </Flex>
+      <Flex row {...horizontalPadding}>
+        <Checkbox active={active} onSelect={setActive} />
+        <MakeSpacing xMultiply={4} />
+        <Checkbox active={false} onSelect={(c) => undefined} />
+      </Flex>
+      <MakeSpacing yMultiply={10} />
       <Padding>
         <Button label={'Continue'} />
         <Button label={'Skip'} secondary />
