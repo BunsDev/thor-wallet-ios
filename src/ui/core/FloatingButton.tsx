@@ -3,6 +3,7 @@ import React from 'react';
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
+  useDerivedValue,
   withSpring,
 } from 'react-native-reanimated';
 import Svg, {Path} from 'react-native-svg';
@@ -45,15 +46,19 @@ type Props = {
 export const FloatingButton = ({show}: Props) => {
   const height = useKeyboardHeight();
   const offset = useMemoizedSharedValue(0);
+  const shouldAnimate = useDerivedValue(
+    () => show && height !== 0,
+    [show, height],
+  );
 
   useAnimatedReaction(
-    () => show,
+    () => shouldAnimate,
     () => {
-      offset.value = withSpring(show ? 0 : 1, {
+      offset.value = withSpring(shouldAnimate.value ? 0 : 1, {
         damping: 10,
       });
     },
-    [show],
+    [shouldAnimate],
   );
 
   const animatedStyle = useAnimatedStyle(() => {
