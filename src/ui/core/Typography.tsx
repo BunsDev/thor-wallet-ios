@@ -10,7 +10,7 @@ export const S_FONT_SIZE = 14;
 export const M_FONT_SIZE = 16; // default font size for text
 const L_FONT_SIZE = 18;
 export const XL_FONT_SIZE = 20;
-const XXL_FONT_SIZE = 30;
+const XXL_FONT_SIZE = 26;
 
 const DEFAULT_FONT_COLOR = __COLORS.WHITE;
 
@@ -62,6 +62,13 @@ export const Regular = styled(Text)<TextProps>`
   ${({size}) => getSize(size)};
   ${({color, center}) => shared(color, center)};
   font-family: ${__FONT_FAMILIES.REGULAR};
+`;
+
+
+export const Medium = styled(Text)<TextProps>`
+  ${({size}) => getSize(size)};
+  ${({color, center}) => shared(color, center)};
+  font-family: ${__FONT_FAMILIES.MEDIUM};
 `;
 
 export const SemiBold = styled(Text)<TextProps>`

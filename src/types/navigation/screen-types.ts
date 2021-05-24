@@ -8,6 +8,7 @@ export type OnboardingNavigatorScreens = {
   [__SCREENS.WELCOME_SCREEN]: undefined;
   [__SCREENS.USERNAME]: undefined;
   [__SCREENS.CREATE_IMPORT_WALLET]: undefined;
+  [__SCREENS.CREATE_PIN_CODE]: undefined;
 };
 
 export type OnboardedNavigatorScreen = {

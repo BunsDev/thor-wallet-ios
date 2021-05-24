@@ -11,6 +11,7 @@ import {__SCREENS} from '../types/navigation/navigation-types';
 import {OnboardingNavigatorScreens} from '../types/navigation/screen-types';
 import {__COLORS} from '../ui/theme/colors';
 import { CreateImportWallet } from "../components/screens/CreateImportWallet";
+import { CreatePinCode } from "../components/screens/CreatePinCode";
 
 const Stack = createStackNavigator<OnboardingNavigatorScreens>();
 
@@ -46,6 +47,11 @@ export const OnboardingNavigator = () => {
           name={__SCREENS.CREATE_IMPORT_WALLET}
           component={CreateImportWallet}
           options={{...createHeader(30)}}
+        />
+        <Stack.Screen
+          name={__SCREENS.CREATE_PIN_CODE}
+          component={CreatePinCode}
+          options={{...createHeader(50)}}
         />
       </Stack.Navigator>
     </NavigationContainer>

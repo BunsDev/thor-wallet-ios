@@ -1,5 +1,7 @@
 import LottieView from 'lottie-react-native';
-import React, {useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
+import {useOnboardingNavigation} from '../../navigation/use-navigation';
+import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
 import {Flex} from '../../ui/core/Flex';
 import {PressableLabel} from '../../ui/core/PressableLabel';
@@ -15,11 +17,17 @@ const wallet = require('../../assets/animations/wallet.json');
 
 const END_FRAME = 39;
 export const CreateImportWallet = () => {
+  const navigation = useOnboardingNavigation<__SCREENS.CREATE_IMPORT_WALLET>();
   const ref = useRef<LottieView>(null);
 
   useEffect(() => {
     ref?.current?.play(0, END_FRAME);
   }, []);
+
+  const navigateTo = useCallback(
+    () => navigation.navigate(__SCREENS.CREATE_PIN_CODE),
+    [navigation],
+  );
 
   return (
     <Background column flex={1}>
@@ -49,10 +57,15 @@ export const CreateImportWallet = () => {
           existing one. We can neither see nor transfer your private keys.{' '}
         </Regular>
         <MakeSpacing yMultiply={1} />
-        <PressableLabel label={'Learn more'} onPress={() => undefined} size="s" center />
+        <PressableLabel
+          label={'Learn more'}
+          onPress={() => undefined}
+          size="s"
+          center
+        />
       </Flex>
       <Padding>
-        <Button label={'Create Wallet'} />
+        <Button label={'Create Wallet'} onPress={navigateTo} />
         <Button label={'Import Wallet'} secondary />
       </Padding>
       <BottomPadder />
