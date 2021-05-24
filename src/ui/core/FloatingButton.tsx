@@ -1,5 +1,5 @@
 import TouchableScale from '@jonny/touchable-scale';
-import React from 'react';
+import React, {useCallback} from 'react';
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
@@ -43,8 +43,9 @@ const Gradient = styled(DefaultGradient)`
 
 type Props = {
   show: boolean;
+  onPress: () => void;
 };
-export const FloatingButton = ({show}: Props) => {
+export const FloatingButton = ({show, onPress}: Props) => {
   const visible = useKeyboardVisible();
   const height = useKeyboardHeight();
   const offset = useMemoizedSharedValue(0);
@@ -69,9 +70,10 @@ export const FloatingButton = ({show}: Props) => {
     };
   });
 
+  const press = useCallback(() => onPress(), [onPress]);
   return (
     <Wrapper bottomOffset={height} style={animatedStyle}>
-      <Touchable>
+      <Touchable onPress={press}>
         <Gradient>
           <Svg width={ARROW_SIZE} height={ARROW_SIZE} viewBox="0 0 16 16">
             <Path

@@ -39,7 +39,7 @@ export const OnboardingNavigator = () => {
         <Stack.Screen
           name={__SCREENS.USERNAME}
           component={UsernameScreen}
-          options={{...createHeader(40)}}
+          options={{...createHeader(15)}}
         />
       </Stack.Navigator>
     </NavigationContainer>

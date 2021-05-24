@@ -111,6 +111,7 @@ export const Input = ({
   return (
     <Wrapper row>
       <StyledInput
+        value={value}
         onChangeText={onChangeText}
         onBlur={onblur}
         onFocus={onfocus}

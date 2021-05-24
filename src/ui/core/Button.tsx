@@ -12,8 +12,9 @@ import {Bold} from './Typography';
 
 const Wrapper = styled(TouchableScale)<{
   secondary?: boolean;
+  withShadow: boolean;
 }>`
-  ${(props) => !props.secondary && DEFAULT_SHADOW};
+  ${(props) => props.withShadow && DEFAULT_SHADOW};
   ${(props) => !props.secondary && DEFAULT_BORDER_RADIUS};
 `;
 
@@ -48,7 +49,12 @@ export const Button = ({
     ? [alpha(0.4, __COLORS.WHITE), alpha(0.6, __COLORS.WHITE)]
     : [__COLORS.LEFT_GRADIENT, __COLORS.RIGHT_GRADIENT];
   return (
-    <Wrapper onPress={press} secondary={secondary} disabled={disabled}>
+    <Wrapper
+      onPress={press}
+      secondary={secondary}
+      disabled={disabled}
+      withShadow={!disabled && !secondary}
+    >
       {secondary ? (
         <SecondaryContainer>
           <Bold color={__COLORS.PRIMARY} center>

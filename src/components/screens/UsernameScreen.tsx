@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
+import {
+  adjectives,
+  animals,
+  uniqueNamesGenerator,
+} from 'unique-names-generator';
+import {useOnboardingNavigation} from '../../navigation/use-navigation';
+import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
-import {Checkbox} from '../../ui/core/Checkbox';
 import {Flex} from '../../ui/core/Flex';
 import {FloatingButton} from '../../ui/core/FloatingButton';
 import {Input} from '../../ui/core/Input';
+import {PressableLabel} from '../../ui/core/PressableLabel';
 import {MakeSpacing} from '../../ui/core/Spacer';
 import {Background} from '../../ui/theme/Background';
 import {horizontalPadding, Padding} from '../../ui/theme/layout';
@@ -13,7 +20,25 @@ import {TopPadder} from '../TopPadder';
 
 export const UsernameScreen = () => {
   const [username, setUsername] = useState('');
-  const [active, setActive] = useState(false);
+  const navigation = useOnboardingNavigation<__SCREENS.USERNAME>();
+
+  const navigateTo = useCallback(
+    () => navigation.navigate(__SCREENS.CREATE_IMPORT_WALLET),
+    [navigation],
+  );
+
+  const isValid = useMemo(() => username.length > 3, [username.length]);
+
+  const generateUsername = useCallback(() => {
+    setUsername(
+      uniqueNamesGenerator({
+        dictionaries: [adjectives, animals],
+        length: 2,
+      }),
+    );
+  }, []);
+
+  console.log('user', username);
 
   return (
     <Background column flex={1}>
@@ -31,18 +56,20 @@ export const UsernameScreen = () => {
           onChangeText={setUsername}
           status={username.length > 3 ? 'valid' : undefined}
         />
+        <MakeSpacing yMultiply={2} />
+        <Flex row>
+          <PressableLabel
+            label="generate"
+            onPress={generateUsername}
+            size="xs"
+          />
+        </Flex>
       </Flex>
-      <Flex row {...horizontalPadding}>
-        <Checkbox active={active} onSelect={setActive} />
-        <MakeSpacing xMultiply={4} />
-        <Checkbox active={false} onSelect={(c) => undefined} />
-      </Flex>
-      <MakeSpacing yMultiply={10} />
       <Padding>
-        <Button label={'Continue'} />
+        <Button label={'Continue'} disabled={!isValid} />
         <Button label={'Skip'} secondary />
       </Padding>
-      <FloatingButton show={username.length > 3} />
+      <FloatingButton show={username.length > 3} onPress={navigateTo} />
       <BottomPadder />
     </Background>
   );
