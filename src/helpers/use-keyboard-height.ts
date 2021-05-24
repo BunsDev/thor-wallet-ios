@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {Keyboard, Platform} from 'react-native';
 
 const useKeyboardHeight = (platforms: string[] = ['ios', 'android']) => {
@@ -20,6 +20,14 @@ const useKeyboardHeight = (platforms: string[] = ['ios', 'android']) => {
     [platforms],
   );
 
+  const keyboardDidShow = useCallback((frames: any) => {
+    setKeyboardHeight(frames.endCoordinates.height);
+  }, []);
+
+  const keyboardDidHide = useCallback(() => {
+    setKeyboardHeight(0);
+  }, []);
+
   useEffect(() => {
     if (isEventRequired(platforms)) {
       Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -31,17 +39,9 @@ const useKeyboardHeight = (platforms: string[] = ['ios', 'android']) => {
         Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
       };
     }
-  }, [isEventRequired, platforms]);
+  }, [isEventRequired, keyboardDidHide, keyboardDidShow, platforms]);
 
-  const keyboardDidShow = (frames: any) => {
-    setKeyboardHeight(frames.endCoordinates.height);
-  };
-
-  const keyboardDidHide = () => {
-    setKeyboardHeight(0);
-  };
-
-  return keyboardHeight;
+  return useMemo(() => keyboardHeight, [keyboardHeight]);
 };
 
 export default useKeyboardHeight;
