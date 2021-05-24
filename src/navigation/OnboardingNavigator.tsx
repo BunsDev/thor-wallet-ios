@@ -10,6 +10,7 @@ import {UsernameScreen} from '../components/screens/UsernameScreen';
 import {__SCREENS} from '../types/navigation/navigation-types';
 import {OnboardingNavigatorScreens} from '../types/navigation/screen-types';
 import {__COLORS} from '../ui/theme/colors';
+import { CreateImportWallet } from "../components/screens/CreateImportWallet";
 
 const Stack = createStackNavigator<OnboardingNavigatorScreens>();
 
@@ -40,6 +41,11 @@ export const OnboardingNavigator = () => {
           name={__SCREENS.USERNAME}
           component={UsernameScreen}
           options={{...createHeader(15)}}
+        />
+        <Stack.Screen
+          name={__SCREENS.CREATE_IMPORT_WALLET}
+          component={CreateImportWallet}
+          options={{...createHeader(30)}}
         />
       </Stack.Navigator>
     </NavigationContainer>

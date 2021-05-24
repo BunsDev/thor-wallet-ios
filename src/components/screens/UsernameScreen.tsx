@@ -22,10 +22,9 @@ export const UsernameScreen = () => {
   const [username, setUsername] = useState('');
   const navigation = useOnboardingNavigation<__SCREENS.USERNAME>();
 
-  const navigateTo = useCallback(
-    () => navigation.navigate(__SCREENS.CREATE_IMPORT_WALLET),
-    [navigation],
-  );
+  const navigateTo = useCallback(() => {
+    navigation.navigate(__SCREENS.CREATE_IMPORT_WALLET);
+  }, [navigation]);
 
   const isValid = useMemo(() => username.length > 3, [username.length]);
 
@@ -37,8 +36,6 @@ export const UsernameScreen = () => {
       }),
     );
   }, []);
-
-  console.log('user', username);
 
   return (
     <Background column flex={1}>
@@ -66,8 +63,8 @@ export const UsernameScreen = () => {
         </Flex>
       </Flex>
       <Padding>
-        <Button label={'Continue'} disabled={!isValid} />
-        <Button label={'Skip'} secondary />
+        <Button label={'Continue'} disabled={!isValid} onPress={navigateTo} />
+        <Button label={'Skip'} secondary onPress={navigateTo} />
       </Padding>
       <FloatingButton show={username.length > 3} onPress={navigateTo} />
       <BottomPadder />
