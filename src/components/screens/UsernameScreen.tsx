@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import useKeyboardHeight from '../../helpers/use-keyboard-height';
 import {Button} from '../../ui/core/Button';
 import {Checkbox} from '../../ui/core/Checkbox';
 import {Flex} from '../../ui/core/Flex';
+import {FloatingButton} from '../../ui/core/FloatingButton';
 import {Input} from '../../ui/core/Input';
 import {MakeSpacing} from '../../ui/core/Spacer';
 import {Background} from '../../ui/theme/Background';
@@ -13,6 +15,7 @@ import {TopPadder} from '../TopPadder';
 export const UsernameScreen = () => {
   const [username, setUsername] = useState('');
   const [active, setActive] = useState(false);
+  const he = useKeyboardHeight();
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -40,6 +43,7 @@ export const UsernameScreen = () => {
         <Button label={'Continue'} />
         <Button label={'Skip'} secondary />
       </Padding>
+      <FloatingButton show={username.length > 3} />
       <BottomPadder />
     </Background>
   );
