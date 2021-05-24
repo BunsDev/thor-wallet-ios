@@ -10,6 +10,7 @@ import Svg, {Path} from 'react-native-svg';
 import styled from 'styled-components';
 import {DefaultGradient} from '../../components/DefaultGradient';
 import useKeyboardHeight from '../../helpers/use-keyboard-height';
+import {useKeyboardVisible} from '../../helpers/use-keyboard-visible';
 import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
 import {__COLORS} from '../theme/colors';
 import {DEFAULT_BORDER_RADIUS, DEFAULT_SHADOW, SPACING} from '../theme/layout';
@@ -44,11 +45,12 @@ type Props = {
   show: boolean;
 };
 export const FloatingButton = ({show}: Props) => {
+  const visible = useKeyboardVisible();
   const height = useKeyboardHeight();
   const offset = useMemoizedSharedValue(0);
   const shouldAnimate = useDerivedValue(
-    () => show && height !== 0,
-    [show, height],
+    () => show && height !== 0 && visible,
+    [show, height, visible],
   );
 
   useAnimatedReaction(

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useKeyboardVisible} from '../../helpers/use-keyboard-visible';
 import {Button} from '../../ui/core/Button';
 import {Checkbox} from '../../ui/core/Checkbox';
 import {Flex} from '../../ui/core/Flex';
@@ -15,7 +14,6 @@ import {TopPadder} from '../TopPadder';
 export const UsernameScreen = () => {
   const [username, setUsername] = useState('');
   const [active, setActive] = useState(false);
-  const keyboardVisible = useKeyboardVisible();
 
   return (
     <Background column flex={1}>
@@ -44,7 +42,7 @@ export const UsernameScreen = () => {
         <Button label={'Continue'} />
         <Button label={'Skip'} secondary />
       </Padding>
-      <FloatingButton show={username.length > 3 && keyboardVisible} />
+      <FloatingButton show={username.length > 3} />
       <BottomPadder />
     </Background>
   );
