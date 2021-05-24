@@ -9,6 +9,7 @@ import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
 import {useOnboardingNavigation} from '../../navigation/use-navigation';
 import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
+import {DecorationDots} from '../../ui/core/DecorationDots';
 import {Flex} from '../../ui/core/Flex';
 import {ObliqueLines} from '../../ui/core/ObliqueLines';
 import {MakeSpacing} from '../../ui/core/Spacer';
@@ -103,6 +104,7 @@ export const IntroScreen = () => {
         />
       </Padding>
       <BottomPadder />
+      <DecorationDots />
     </Background>
   );
 };
