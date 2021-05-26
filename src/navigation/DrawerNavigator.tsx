@@ -20,7 +20,7 @@ export const DrawerNavigator = () => {
     );
   }, [hasCompletedOnboarding]);
 
-  // Fix a drawer flickering
+  // It fixes a drawer flickering
   const [initRender, setInitRender] = useState(true);
 
   useEffect(() => {

@@ -9,40 +9,47 @@ import Svg, {Circle} from 'react-native-svg';
 import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
 import {SPACING} from '../theme/layout';
 
-const size = SPACING * 2;
-const strokeWidth = size / 8; // thickness of the spinner
-const radius = (size - strokeWidth) / 2;
+const circleCenter = SPACING * 2;
+const strokeWidth = circleCenter / 8; // thickness of the spinner
+const radius = (circleCenter - strokeWidth) / 2;
 const circumference = radius * 2 * Math.PI;
-const offset = size / 4;
+const offset = circleCenter / 4;
 
 const AnimatedSVG = Animated.createAnimatedComponent(Svg);
 
 type Props = {
   color: string;
 };
+
+const animConfig = {duration: 2500};
+
+// TODO: refactor spinner
 export const CircularSpinner = ({color}: Props) => {
   const rotation = useMemoizedSharedValue(0);
 
-  useEffect(() => {
-    rotation.value = withRepeat(withTiming(1, {duration: 2500}), -1, true);
-  }, [rotation]);
-
   const animatedProps = useAnimatedProps(() => {
     return {
-      transform: [{rotate: interpolate(rotation.value, [0, 1], [0, size])}],
+      transform: [
+        {rotate: interpolate(rotation.value, [0, 1], [0, circleCenter])},
+      ],
     };
   });
+
+  useEffect(() => {
+    rotation.value = withRepeat(withTiming(1, animConfig), -1, true);
+  }, [rotation]);
+
   return (
     <AnimatedSVG
-      width={size}
-      height={size}
+      width={circleCenter}
+      height={circleCenter}
       animatedProps={animatedProps as any}
     >
       <Circle
-        stroke={color}
         fill="none"
-        cx={size / 2}
-        cy={size / 2}
+        cx={circleCenter / 2}
+        cy={circleCenter / 2}
+        stroke={color}
         strokeWidth={strokeWidth}
         strokeDashoffset={offset}
         strokeDasharray={`${circumference}  ${circumference}`}
