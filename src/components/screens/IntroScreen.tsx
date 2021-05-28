@@ -1,4 +1,3 @@
-import {generatePhrase} from '@xchainjs/xchain-crypto';
 import React, {useCallback, useState} from 'react';
 import {View} from 'react-native';
 import Animated, {
@@ -34,9 +33,6 @@ export const IntroScreen = () => {
   const currentIndex = useMemoizedSharedValue(0);
   const NR_ELEMENTS = 3;
 
-  const a = generatePhrase(10);
-
-  console.log('aa', a);
   const scrollHandler = useAnimatedScrollHandler({
     onMomentumEnd: (event) => {
       currentIndex.value = Math.round(event.contentOffset.x / ELEMENT_WIDTH);
