@@ -24,6 +24,13 @@ module.exports = (async () => {
     resolver: {
       assetExts: assetExts.filter((ext) => ext !== 'svg'),
       sourceExts: [...sourceExts, 'svg'],
+      extraNodeModules: {
+        randombytes: require.resolve('react-native-randombytes'),
+        crypto: require.resolve('react-native-crypto'),
+        buffer: require.resolve('buffer/'),
+        events: require.resolve('events/'),
+        stream: require.resolve('readable-stream'),
+      },
     },
   };
 })();
