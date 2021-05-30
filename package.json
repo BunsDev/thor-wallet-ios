@@ -44,6 +44,7 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-normalized": "^2.0.1",
+    "react-native-os": "^1.2.6",
     "react-native-randombytes": "^3.6.1",
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",

@@ -30,6 +30,7 @@ module.exports = (async () => {
         buffer: require.resolve('buffer/'),
         events: require.resolve('events/'),
         stream: require.resolve('readable-stream'),
+        os: require.resolve('react-native-os'),
       },
     },
   };
