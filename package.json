@@ -20,6 +20,7 @@
     "@xchainjs/xchain-client": "^0.8.0",
     "@xchainjs/xchain-crypto": "^0.2.3",
     "@xchainjs/xchain-ethereum": "^0.19.0",
+    "@xchainjs/xchain-thorchain": "^0.14.0",
     "@xchainjs/xchain-util": "^0.2.7",
     "axios": "^0.21.1",
     "buffer": "^6.0.3",
