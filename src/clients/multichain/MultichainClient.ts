@@ -6,7 +6,7 @@ import {EthereumClient} from './EthereumClient';
 import {LitecoinClient} from './LitecoinClient';
 import {ThorchainClient} from './ThorchainClient';
 
-export class MultiChainClient {
+export class MultichainClient {
   private phrase: string;
   public readonly network: Network;
 
