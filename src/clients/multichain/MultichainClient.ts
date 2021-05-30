@@ -4,7 +4,6 @@ import {BitcoinCashClient} from './BitcoinCashClient';
 import {BitcoinClient} from './BitcoinClient';
 import {EthereumClient} from './EthereumClient';
 import {LitecoinClient} from './LitecoinClient';
-import {ThorchainClient} from './ThorchainClient';
 
 export class MultichainClient {
   private phrase: string;
@@ -12,7 +11,7 @@ export class MultichainClient {
 
   public readonly chains = ['BNB', 'BTC', 'ETH', 'THOR', 'BCH', 'LTC'];
 
-  public thor: ThorchainClient;
+  // public thor: ThorchainClient;
 
   public eth: EthereumClient;
 
@@ -28,7 +27,7 @@ export class MultichainClient {
     this.network = network;
     this.phrase = phrase;
 
-    this.thor = new ThorchainClient({network, phrase});
+    // this.thor = new ThorchainClient({network, phrase});
     this.eth = new EthereumClient({network, phrase});
     this.btc = new BitcoinClient({network, phrase});
     this.bnb = new BinanceClient({network, phrase});
