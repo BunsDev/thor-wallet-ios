@@ -23,9 +23,6 @@ export const CreateImportWallet = () => {
   const ref = useRef<LottieView>(null);
 
   const [phrase, setPhrase] = useState('');
-  const [multichainClient, setMultichainClient] = useState(
-    new MultichainClient({network: 'mainnet', phrase}),
-  );
 
   useEffect(() => {
     ref?.current?.play(0, END_FRAME);
@@ -42,10 +39,25 @@ export const CreateImportWallet = () => {
     console.log('This phrase was generated:', thisPhrase);
   }, [phrase, setPhrase]);
 
-  const importWallet = useCallback(() => {
-    console.log('This phrase was saved:', phrase);
-    setMultichainClient(new MultichainClient({network: 'mainnet', phrase}));
-  }, [phrase]);
+  const importWallet = useCallback(async () => {
+    const mcClient = new MultichainClient({
+      network: 'mainnet',
+      phrase:
+        'Add the pass phrase of a mainnet wallet here and be careful that you dont share this with anyone',
+    });
+
+    let balances = await mcClient.eth.getBalance();
+    balances = balances.concat(await mcClient.bnb.getBalance());
+
+    for (const bl of balances) {
+      console.log(
+        'The balance of',
+        bl.asset.symbol,
+        'is',
+        bl.amount.amount().div(10 ** bl.amount.decimal),
+      );
+    }
+  }, []);
 
   return (
     <Background column flex={1}>
