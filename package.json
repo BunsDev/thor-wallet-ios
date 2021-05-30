@@ -17,12 +17,14 @@
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "@xchainjs/xchain-bitcoin": "^0.13.0",
     "@xchainjs/xchain-client": "^0.8.0",
     "@xchainjs/xchain-crypto": "^0.2.3",
     "@xchainjs/xchain-ethereum": "^0.19.0",
     "@xchainjs/xchain-thorchain": "^0.14.0",
     "@xchainjs/xchain-util": "^0.2.7",
     "axios": "^0.21.1",
+    "bitcoinjs-lib": "^5.2.0",
     "buffer": "^6.0.3",
     "cosmos-client": "^0.42.4",
     "ethers": "^5.2.0",
@@ -44,7 +46,8 @@
     "react-native-svg-transformer": "^0.14.3",
     "readable-stream": "^3.6.0",
     "styled-components": "^5.3.0",
-    "unique-names-generator": "^4.5.0"
+    "unique-names-generator": "^4.5.0",
+    "wif": "^2.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

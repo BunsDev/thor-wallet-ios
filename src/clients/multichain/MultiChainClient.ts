@@ -10,6 +10,7 @@ export class MultiChainClient {
 
   public thor: ThorChain;
 
+  public btc: BtcChain;
   public eth: EthereumClient;
 
 
@@ -18,6 +19,7 @@ export class MultiChainClient {
     this.phrase = phrase;
 
     this.thor = new ThorChain({network});
+    this.btc = new BtcChain({network});
     this.eth = new EthereumClient({network, phrase});
   }
 }

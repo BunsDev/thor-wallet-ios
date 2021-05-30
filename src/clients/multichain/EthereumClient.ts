@@ -3,6 +3,7 @@ import {ExplorerUrl, InfuraCreds} from '@xchainjs/xchain-ethereum/lib/types';
 import {Chain, ETHChain} from '@xchainjs/xchain-util';
 import {ClientConstructorParams} from './types/multichain-types';
 
+// todo remove when PR is merged in xchain
 declare type EthereumClientParams = {
   ethplorerUrl?: string;
   ethplorerApiKey?: string;
