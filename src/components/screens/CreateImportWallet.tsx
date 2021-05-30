@@ -1,8 +1,9 @@
 import {generatePhrase} from '@xchainjs/xchain-crypto';
 import LottieView from 'lottie-react-native';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {MultichainClient} from '../../clients/multichain/MultichainClient';
+import React, {useCallback, useEffect, useRef} from 'react';
+import {useChainClient} from '../../clients/multichain/MultichainClient';
 import {useOnboardingNavigation} from '../../navigation/use-navigation';
+import {usePhrase} from '../../store/phrase/phrase-state';
 import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
 import {Flex} from '../../ui/core/Flex';
@@ -21,8 +22,8 @@ const END_FRAME = 39;
 export const CreateImportWallet = () => {
   const navigation = useOnboardingNavigation<__SCREENS.CREATE_IMPORT_WALLET>();
   const ref = useRef<LottieView>(null);
-
-  const [phrase, setPhrase] = useState('');
+  const client = useChainClient();
+  const [, setPhrase] = usePhrase('phrase');
 
   useEffect(() => {
     ref?.current?.play(0, END_FRAME);
@@ -37,27 +38,26 @@ export const CreateImportWallet = () => {
     const thisPhrase = generatePhrase();
     setPhrase(thisPhrase);
     console.log('This phrase was generated:', thisPhrase);
-  }, [phrase, setPhrase]);
+  }, [setPhrase]);
 
   const importWallet = useCallback(async () => {
-    const mcClient = new MultichainClient({
-      network: 'mainnet',
-      phrase:
-        'Add the pass phrase of a mainnet wallet here and be careful that you dont share this with anyone',
-    });
+    try {
+      console.log('phrase', client.eth.getWallet());
+      let balances = await client.eth.getBalance();
+      balances = balances.concat(await client.bnb.getBalance());
 
-    let balances = await mcClient.eth.getBalance();
-    balances = balances.concat(await mcClient.bnb.getBalance());
-
-    for (const bl of balances) {
-      console.log(
-        'The balance of',
-        bl.asset.symbol,
-        'is',
-        bl.amount.amount().div(10 ** bl.amount.decimal),
-      );
+      for (const bl of balances) {
+        console.log(
+          'The balance of',
+          bl.asset.symbol,
+          'is',
+          bl.amount.amount().div(10 ** bl.amount.decimal),
+        );
+      }
+    } catch (e) {
+      console.log('error', e);
     }
-  }, []);
+  }, [client.bnb, client.eth]);
 
   return (
     <Background column flex={1}>
