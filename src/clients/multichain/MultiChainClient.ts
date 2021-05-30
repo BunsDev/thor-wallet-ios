@@ -8,6 +8,7 @@ export class MultiChainClient {
 
   public readonly chains = ['BNB', 'BTC', 'ETH', 'THOR', 'BCH', 'LTC'];
 
+  public thor: ThorChain;
 
   public eth: EthereumClient;
 
@@ -16,6 +17,7 @@ export class MultiChainClient {
     this.network = network;
     this.phrase = phrase;
 
+    this.thor = new ThorChain({network});
     this.eth = new EthereumClient({network, phrase});
   }
 }
