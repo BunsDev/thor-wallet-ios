@@ -1,5 +1,7 @@
+import {generatePhrase} from '@xchainjs/xchain-crypto';
 import LottieView from 'lottie-react-native';
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {MultichainClient} from '../../clients/multichain/MultichainClient';
 import {useOnboardingNavigation} from '../../navigation/use-navigation';
 import {__SCREENS} from '../../types/navigation/navigation-types';
 import {Button} from '../../ui/core/Button';
@@ -20,6 +22,11 @@ export const CreateImportWallet = () => {
   const navigation = useOnboardingNavigation<__SCREENS.CREATE_IMPORT_WALLET>();
   const ref = useRef<LottieView>(null);
 
+  const [phrase, setPhrase] = useState('');
+  const [multichainClient, setMultichainClient] = useState(
+    new MultichainClient({network: 'mainnet', phrase}),
+  );
+
   useEffect(() => {
     ref?.current?.play(0, END_FRAME);
   }, []);
@@ -28,6 +35,17 @@ export const CreateImportWallet = () => {
     () => navigation.navigate(__SCREENS.CREATE_PIN_CODE),
     [navigation],
   );
+
+  const createWallet = useCallback(() => {
+    const thisPhrase = generatePhrase();
+    setPhrase(thisPhrase);
+    console.log('This phrase was generated:', thisPhrase);
+  }, [phrase, setPhrase]);
+
+  const importWallet = useCallback(() => {
+    console.log('This phrase was saved:', phrase);
+    setMultichainClient(new MultichainClient({network: 'mainnet', phrase}));
+  }, [phrase]);
 
   return (
     <Background column flex={1}>
@@ -65,8 +83,14 @@ export const CreateImportWallet = () => {
         />
       </Flex>
       <Padding>
-        <Button label={'Create Wallet'} onPress={navigateTo} />
-        <Button label={'Import Wallet'} secondary />
+        <Button
+          label={'Create Wallet'}
+          onPress={() => {
+            navigateTo();
+            createWallet();
+          }}
+        />
+        <Button label={'Import Wallet'} secondary onPress={importWallet} />
       </Padding>
       <BottomPadder />
     </Background>
