@@ -1,6 +1,10 @@
-import {Network} from '@xchainjs/xchain-client';
+import {Network, XChainClientParams} from '@xchainjs/xchain-client';
+import {BinanceClient} from './BinanceClient';
+import {BitcoinCashClient} from './BitcoinCashClient';
+import {BitcoinClient} from './BitcoinClient';
 import {EthereumClient} from './EthereumClient';
-import {ClientConstructorParams} from './types/multichain-types';
+import {LitecoinClient} from './LitecoinClient';
+import {ThorchainClient} from './ThorchainClient';
 
 export class MultiChainClient {
   private phrase: string;
@@ -8,18 +12,27 @@ export class MultiChainClient {
 
   public readonly chains = ['BNB', 'BTC', 'ETH', 'THOR', 'BCH', 'LTC'];
 
-  public thor: ThorChain;
+  public thor: ThorchainClient;
 
-  public btc: BtcChain;
   public eth: EthereumClient;
 
+  public btc: BitcoinClient;
 
-  constructor({network = 'testnet', phrase = ''}: ClientConstructorParams) {
+  public bnb: BinanceClient;
+
+  public bch: BitcoinCashClient;
+
+  public ltc: LitecoinClient;
+
+  constructor({network = 'testnet', phrase = ''}: XChainClientParams) {
     this.network = network;
     this.phrase = phrase;
 
-    this.thor = new ThorChain({network});
-    this.btc = new BtcChain({network});
+    this.thor = new ThorchainClient({network, phrase});
     this.eth = new EthereumClient({network, phrase});
+    this.btc = new BitcoinClient({network, phrase});
+    this.bnb = new BinanceClient({network, phrase});
+    this.bch = new BitcoinCashClient({network, phrase});
+    this.ltc = new LitecoinClient({network, phrase});
   }
 }
