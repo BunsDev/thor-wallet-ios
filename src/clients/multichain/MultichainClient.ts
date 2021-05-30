@@ -11,7 +11,7 @@ export class MultichainClient {
 
   public readonly chains = ['BNB', 'BTC', 'ETH', 'THOR', 'BCH', 'LTC'];
 
-  // public thor: ThorchainClient;
+  // public thor: ThorchainClient; // cosmos-client package not working yet
 
   public eth: EthereumClient;
 
@@ -27,7 +27,7 @@ export class MultichainClient {
     this.network = network;
     this.phrase = phrase;
 
-    // this.thor = new ThorchainClient({network, phrase});
+    // this.thor = new ThorchainClient({network, phrase}); // cosmos-client package not working yet
     this.eth = new EthereumClient({network, phrase});
     this.btc = new BitcoinClient({network, phrase});
     this.bnb = new BinanceClient({network, phrase});
