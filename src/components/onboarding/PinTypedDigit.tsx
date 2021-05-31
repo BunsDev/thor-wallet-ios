@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Animated, {
-  useAnimatedReaction,
+  interpolate,
   useAnimatedStyle,
-  useDerivedValue,
+  useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 import styled from 'styled-components';
-import {useMemoizedSharedValue} from '../../helpers/use-memoized-shared-value';
 import {__COLORS} from '../../ui/theme/colors';
 import {SPACING} from '../../ui/theme/layout';
 
@@ -23,36 +22,18 @@ type Props = {
   typed: boolean;
 };
 export const PinTypedDigit = ({typed}: Props) => {
-  console.log('aaa', typed);
-  const opacity = useDerivedValue(() => (typed ? 1 : 0.25), [typed]);
-  const scale = useDerivedValue(() => (typed ? 1 : 0.8), [typed]);
-  const animation = useMemoizedSharedValue(0);
-  const animation2 = useMemoizedSharedValue(0);
+  const animation = useSharedValue(0);
 
-  useAnimatedReaction(
-    () => opacity,
-    () => {
-      animation.value = withSpring(opacity.value, {
-        damping: 100,
-      });
-    },
-    [animation],
-  );
-
-  useAnimatedReaction(
-    () => opacity,
-    () => {
-      animation2.value = withSpring(scale.value, {
-        damping: 100,
-      });
-    },
-    [animation],
-  );
+  useEffect(() => {
+    animation.value = withSpring(Number(typed), {
+      damping: 100,
+    });
+  }, [animation, typed]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      opacity: animation.value,
-      transform: [{scale: animation2.value}],
+      opacity: interpolate(animation.value, [0, 1], [0.25, 1]),
+      transform: [{scale: interpolate(animation.value, [0, 1], [0.8, 1])}],
     };
   });
 
