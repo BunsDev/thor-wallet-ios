@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const Digit = ({digit, onDigit}: Props) => {
-  const press = useCallback(() => onDigit(digit), []);
+  const press = useCallback(() => onDigit(digit), [digit, onDigit]);
   return (
     <TouchableScale onPress={press}>
       <Medium color={__COLORS.WHITE} size="xxl">

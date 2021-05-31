@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {Button} from '../../ui/core/Button';
 import {DecorationDots} from '../../ui/core/DecorationDots';
 import {Flex} from '../../ui/core/Flex';
@@ -13,10 +13,6 @@ import {TopPadder} from '../TopPadder';
 export const CreatePinCode = () => {
   const [code, setCode] = useState<string[]>([]);
 
-  const onDigit = useCallback(
-    (c: string) => setCode((oldCode) => [...oldCode, c]),
-    [],
-  );
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -27,7 +23,11 @@ export const CreatePinCode = () => {
       />
       <MakeSpacing yMultiply={8} />
       <Flex column flex={1} {...horizontalPadding}>
-        <PinCode digits={code} onDigit={onDigit} />
+        <PinCode
+          digits={code}
+          onChange={setCode}
+          onComplete={(code) => void 0}
+        />
       </Flex>
       <Padding>
         <Button label={'Continue'} />
