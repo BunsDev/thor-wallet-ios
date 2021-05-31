@@ -13,6 +13,7 @@ import {TopPadder} from '../TopPadder';
 export const CreatePinCode = () => {
   const [code, setCode] = useState<string[]>([]);
 
+  console.log('aaa', code);
   return (
     <Background column flex={1}>
       <TopPadder />
@@ -26,6 +27,7 @@ export const CreatePinCode = () => {
         <PinCode
           digits={code}
           onChange={setCode}
+          requiredDigits={6}
           onComplete={(code) => void 0}
         />
       </Flex>
