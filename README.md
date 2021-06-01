@@ -69,7 +69,12 @@ Follow style conventions and folder structure. If you want to actively contribut
 - **Types**
     - Typescript files which declare new types. These types are then imported and used everywhere. Format: `your-new-type.ts`
 
-
+- **ui** 
+    - UI components with tho main folders: 
+        - core
+            - Core and fundamental UI components for THORWallet in the following format: `YourUIComponent.tsx`. This folder contains components such as `Button.tsx`, `Input.tsx`, `Flex.tsx`, `Spacer.tsx`, `Checkbox.tsx` . These components are exposed with simple APIs through typed props. 
+        - theme
+            - Core theme for THORWallet. This folder includes files such as `colors.ts`, `fonts.ts`, etc. 
 
 ## 🔖  License
 This project is [MPL](https://github.com/THORWallet/thorwallet-react-native/blob/master/LICENSE.txt) licensed.
